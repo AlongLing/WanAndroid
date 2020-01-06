@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @InjectPresenter
     private MainPresenter mMainPresenter;
 
-    private MyDatabaseUtil mMyDatabaseUtil;
+    private MyDatabaseUtil mMyDatabaseUtil;     // 数据库的工具类，因为 Room 的增删改查都要求在子线程中处理，所以封了一个类，其他地方可以直接调用该类的方法就好。
 
     @Override
     protected int getXMLId() {
@@ -88,8 +88,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         initToolbar();
         initListener();
         initFragment();
-        mUserName = mNavigationView.getHeaderView(0).findViewById(R.id.user_name);
-        mLoginInOut = mNavigationView.getMenu().findItem(R.id.loginInOut);
+        mUserName = mNavigationView.getHeaderView(0).findViewById(R.id.user_name);    // 获取头布局。
+        mLoginInOut = mNavigationView.getMenu().findItem(R.id.loginInOut);    // 获取菜单栏。
         initDatabase();
     }
 
@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);         // 显示返回图标。
             actionBar.setHomeAsUpIndicator(R.drawable.ic_nav_menu_black_24dp);
         }
     }
@@ -191,6 +191,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         }
     }
 
+    // 这里我主要是想用一下 Handler。
     private final Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -216,7 +217,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case android.R.id.home:
-                    mDrawerLayout.openDrawer(GravityCompat.START);
+                    mDrawerLayout.openDrawer(GravityCompat.START);     // 点击 toolbar 上的返回按钮显示滑动菜单栏。
                     break;
                 default:
                     break;

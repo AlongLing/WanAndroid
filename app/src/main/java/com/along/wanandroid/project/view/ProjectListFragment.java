@@ -72,6 +72,7 @@ public class ProjectListFragment extends BaseFragment implements ProjectListCont
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mProjectListAdapter = new ProjectListAdapter(R.layout.fragment_project_list_item, mArticleDetailBeanList);
         mProjectListAdapter.setOnItemClickListener(onItemClickListener);
+        // 滑动最后一个Item的时候回调onLoadMoreRequested方法。
         mProjectListAdapter.setOnLoadMoreListener(requestLoadMoreListener, mRecyclerView);
         mRecyclerView.setAdapter(mProjectListAdapter);
         mProjectListPresenter.getProjectArticles(getActivity(), 1, getArguments().getInt("categoryId"));
@@ -87,6 +88,7 @@ public class ProjectListFragment extends BaseFragment implements ProjectListCont
             mArticleDetailBeanList.clear();
             mArticleDetailBeanList.addAll(articleList.getDatas());
             if (articleList.getDatas().size() < 20) {
+                //数据全部加载完毕。
                 mProjectListAdapter.loadMoreEnd(false);
             }
         } else {
@@ -95,11 +97,13 @@ public class ProjectListFragment extends BaseFragment implements ProjectListCont
             if (articleList.getDatas().size() < 20) {
                 mProjectListAdapter.loadMoreEnd(false);
             } else {
+                // 本次加载数据完成，但不是说全部加载结束，还有下一页的数据。
                 mProjectListAdapter.loadMoreComplete();
             }
         }
     }
 
+    // 下拉刷新。
     private SwipeRefreshLayout.OnRefreshListener onRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
@@ -108,6 +112,7 @@ public class ProjectListFragment extends BaseFragment implements ProjectListCont
         }
     };
 
+    // 子项的点击事件，点击跳转到内容详情界面。
     private BaseQuickAdapter.OnItemClickListener onItemClickListener = new BaseQuickAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

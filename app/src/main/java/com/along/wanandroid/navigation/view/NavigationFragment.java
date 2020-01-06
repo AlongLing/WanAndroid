@@ -57,6 +57,7 @@ public class NavigationFragment extends BaseFragment implements NavigationContra
     }
 
     public void showNavigationDetail(NavigationBean.NavigationItem navigationItem) {
+        // 这里做了一下转换，有些 url 是 http开头会导致 url 失效，需要转换成 https。
         String strUrl = navigationItem.getLink();
         if (strUrl == null) {
         } else {

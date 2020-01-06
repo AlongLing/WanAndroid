@@ -25,7 +25,7 @@ public abstract class BasePresenter<V extends IBaseView, M extends BaseModel> im
     public void attach(IBaseView view) {
         mReferenceView = new SoftReference<>(view);
 
-        //使用动态代理做统一的逻辑判断 aop 思想
+        //使用动态代理做统一的逻辑判断 aop 思想     解释1.
         mProxyView = (V) Proxy.newProxyInstance(view.getClass().getClassLoader(), view.getClass().getInterfaces(), new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] objects) throws Throwable {
@@ -36,7 +36,7 @@ public abstract class BasePresenter<V extends IBaseView, M extends BaseModel> im
             }
         });
 
-        //通过获得泛型类的父类，拿到泛型的接口类实例，通过反射来实例化 model
+        //通过获得泛型类的父类，拿到泛型的接口类实例，通过反射来实例化 model    解释2.
         ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
         if (type != null) {
             Type[] types = type.getActualTypeArguments();

@@ -29,6 +29,7 @@ public class ProjectPagerAdapter extends FragmentPagerAdapter {
         mFragmentList = new ArrayList<>();
         for (ProjectCategory projectCategory : categoryList) {
             mTitles.add(projectCategory.getName());
+            // 根据项目的分类 id 创建不同的 fragment，让每一个 ViewPager 的页面都显示各自的 fragment。
             Fragment fragment = ProjectListFragment.getInstance(projectCategory.getId());
             mFragmentList.add(fragment);
         }
@@ -51,6 +52,7 @@ public class ProjectPagerAdapter extends FragmentPagerAdapter {
         super.destroyItem(container, position, object);
     }
 
+    // 给 TabLayout 设置相应的标题。
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {

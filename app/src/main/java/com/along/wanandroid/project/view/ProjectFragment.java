@@ -40,9 +40,12 @@ public class ProjectFragment extends BaseFragment implements ProjectContract.Vie
 
     @Override
     public void showTabs(List<ProjectCategory> categoryList) {
+        // 创建 ProjectPagerAdapter 对象，传入分类数据。
         mAdapter = new ProjectPagerAdapter(getActivity().getSupportFragmentManager(), categoryList);
+        // 给 ViewPager 设置 Adapter。
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        // 将 TabLayout 和 ViewPager 组合起来。
         mTabLayout.setupWithViewPager(mViewPager);
     }
 }

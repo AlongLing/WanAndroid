@@ -55,7 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         }
 
         mInjectPresenters = new ArrayList<>();
-        Field[] fields = this.getClass().getDeclaredFields();
+        Field[] fields = this.getClass().getDeclaredFields();   // 解释1。
         for (Field field : fields) {
             //获取变量上面的注解类型
             InjectPresenter injectPresenter = field.getAnnotation(InjectPresenter.class);
