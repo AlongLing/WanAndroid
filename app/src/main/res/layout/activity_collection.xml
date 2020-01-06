@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".collection.view.CollectionActivity"
+    android:background="@color/White">
+
+        <com.classic.common.MultipleStatusView
+            android:id="@+id/collection_msv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/mlst_bg"
+            app:emptyView="@layout/empty_view"
+            app:errorView="@layout/error_view"
+            app:loadingView="@layout/layout_loading"
+            app:noNetworkView="@layout/no_network_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/collection_srl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <include
+                        android:id="@+id/collection_toolbar"
+                        layout="@layout/toolbar"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/collection_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/recyclerview_item_bg"
+                        android:scrollbars="vertical"
+                        tools:listitem="@layout/home_recyclerview_item"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/collection_toolbar"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </com.classic.common.MultipleStatusView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

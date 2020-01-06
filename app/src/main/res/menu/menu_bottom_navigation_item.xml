@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/homgpage"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="首页"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/projets"
+        android:enabled="true"
+        android:icon="@drawable/ic_project"
+        android:title="项目"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/knowledge"
+        android:enabled="true"
+        android:icon="@drawable/ic_system"
+        android:title="体系"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/navigation"
+        android:enabled="true"
+        android:icon="@drawable/ic_navigation"
+        android:title="导航"
+        app:showAsAction="ifRoom" />
+
+</menu>
